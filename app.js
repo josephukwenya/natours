@@ -12,18 +12,15 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   console.log('Hello from the middleware 👋');
+  next();
 });
 
 app.get('/', (req, res) => {
-  res.json({ msg: 'MERN Stack course!' });
+  res.send('<h1>Hello from the server side!</h1>');
 });
 
 // Mount routes
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-const port = 5000;
-
-app.listen(port, () => {
-  console.log(`App running on ${port}...`);
-});
+module.exports = app;
